@@ -1,15 +1,17 @@
+const IN_PROGRESS = 'In Progress';
+const DONE = 'Done';
+const TODO = 'To Do';
+
 const list = {
-    "create a task": "In progress",
-    "make a bed": "Done",
-    "write a post": "To Do",
+    "create a task": IN_PROGRESS,
+    "make a bed": DONE,
+    "write a post": TODO,
 };
 
-function changeStatus(task) {
-    Object.defineProperty(list, task, {
-        value: "Done",
-    });
-   
+function changeStatus(task, status) {
+    list[task] = status;
 }
+
 function addTask(task) {
     list[task] = 'To do';
 }
@@ -18,8 +20,30 @@ function deleteTask(task) {
     delete list[task];
 }
 
-changeStatus("write a post");
-addTask("Added");
-deleteTask("make a bed");
-console.log(list);
+function showList() {
+    console.log("Todo: ");
+     for (let task in list) {
+         if(list[task] === TODO) {
+             console.log(task);
+         }
+     }
+
+     console.log("Done: ");
+     for (let task in list) {
+         if(list[task] === DONE) {
+             console.log(task);
+         }
+     }
+
+     console.log("In Progress: ");
+     for (let task in list) {
+         if(list[task] === IN_PROGRESS) {
+             console.log(task);
+         }
+     }
+
+}
+showList();
+
+
 
